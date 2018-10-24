@@ -1,9 +1,7 @@
 package com.devchun.spittr.config;
 
-import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
-
-import com.devchun.spittr.web.WebConfig;
-
+public class SpittrWebAppInitializer {}
+/*
 public class SpittrWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
@@ -20,5 +18,5 @@ public class SpittrWebAppInitializer extends AbstractAnnotationConfigDispatcherS
 	protected String[] getServletMappings() {
 		return new String[] { "/" };
 	}
-
 }
+*/

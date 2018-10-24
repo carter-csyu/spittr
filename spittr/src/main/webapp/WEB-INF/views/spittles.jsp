@@ -1,16 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Spittles</title>
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/style.css" />" >
-</head>
-<body>
-	<div class="listTitle">
-		<h1>Recent Spittles</h1>
-		<ul class="spittleList">
+<div class="listTitle">
+	<h1>Recent Spittles</h1>
+	<div class="spittleList">
+		<ul>
 			<c:forEach items="${spittleList}" var="spittle">
 				<li id="spittle_<c:out value="spittle.id" />">
 					<div class="spittleMessage">
@@ -26,5 +18,4 @@
 			</c:forEach>
 		</ul>
 	</div>
-</body>
-</html>
+</div>

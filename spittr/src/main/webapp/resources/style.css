@@ -1,5 +1,10 @@
 body {
 	font-family: sans-serif;
+	background-image: url("/resources/images/spitter_background.gif");
+}
+
+body, header, footer {
+	text-align: center;
 }
 
 .spittleList h1 {
@@ -13,11 +18,12 @@ body {
 } 
 
 .spittleList ul li:first-child {
-	border-top: 0px;
+	border-top: 0px; 
 } 
 
 .spittleList ul li {
 	border-top: 1px solid #cccccc;
+	list-style-type: none;	
 } 
 
 .spittleTime {
@@ -30,4 +36,21 @@ body {
 
 .spittleForm h1 {
 	font-size: 16pt;
+}
+
+span.error {
+	color: red;	
+}
+
+div.errors {
+	background-color: #ffcccc;
+	border: 2px solid red;
+}
+
+label.error {
+	color: red;
+}
+
+input.error {
+	background-color: #ffcccc;
 }

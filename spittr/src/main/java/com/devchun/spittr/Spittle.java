@@ -1,5 +1,6 @@
 package com.devchun.spittr;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -17,6 +18,14 @@ public class Spittle {
 	}
 	
 	public Spittle(Long id, String message, Date time, Double longitude, Double latitude) {
+		this.id = id;
+		this.message = message;
+		this.time = time;
+		this.longitude = longitude;
+		this.latitude = latitude;
+	}
+	
+	public Spittle(Long id, String message, Timestamp time, Double longitude, Double latitude) {
 		this.id = id;
 		this.message = message;
 		this.time = time;
