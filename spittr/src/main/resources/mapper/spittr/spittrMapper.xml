@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spittr">
+	<resultMap id="spittle" type="com.devchun.spittr.Spittle">
+		<id column="id" property="id" />
+		<result column="message" property="message" />
+		<result column="created" property="time" />
+		<result column="longitude" property="longitude" />
+		<result column="latitude" property="latitude" />
+	</resultMap>
+	<resultMap id="spitter" type="com.devchun.spittr.Spitter">
+		<id column="id" property="id" />
+		<result column="username" property="username" />
+		<result column="password" property="password" />
+		<result column="first_name" property="firstName" />
+		<result column="last_name" property="lastName" />
+		<result column="email" property="email" />
+	</resultMap>
+	
+	<select id="selectSpittles" resultMap="spittle">
+		<!-- spittrMapper.xml - selectSpittles -->
+		SELECT ID
+			  ,MESSAGE
+			  ,CREATED
+			  ,LONGITUDE
+			  ,LATITUDE
+	      FROM SPITTLE
+	     ORDER BY ID DESC
+	</select>
+	
+	<insert id="insertsSpitter" parameterMap="spitter">
+		<!-- spittrMapper.xml - insertSpitter -->
+		INSERT INFO SPITTER(USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, EMAIL)
+		VALUES (#{username}, #{password}, #{firstName}, #{lastName}, #{email})
+	</insert>
+	
+	<select id="selectSpitter" parameterType="String" resultMap="spitter">
+		<!-- spittrMapper.xml - selectSpitter -->
+		SELECT ID
+			  ,USERNAME
+			  ,FIRST_NAME
+			  ,LAST_NAME
+			  ,EMAIL
+		  FROM SPITTER
+		 WHERE USERNAME = #{username}
+	</select>
+	
+</mapper>

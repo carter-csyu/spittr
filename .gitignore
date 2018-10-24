@@ -1,0 +1,8 @@
+
+spittr/target/
+spittr/dev/
+
+spittr/.settings
+spittr/.project
+spittr/.classpath
+spittr/.springBeans
