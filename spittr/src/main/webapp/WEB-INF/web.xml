@@ -11,7 +11,10 @@
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>com.devchun.spittr.config.RootConfig</param-value>
+		<param-value>
+		  com.devchun.spittr.config.RootConfig,
+		  com.devchun.spittr.config.DataConfig
+		</param-value>
 		<!-- <param-value>/WEB-INF/spring/root-context.xml</param-value> -->
 	</context-param>
 	
@@ -45,7 +48,7 @@
 		</init-param>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>com.devchun.spittr.web.WebConfig</param-value>
+			<param-value>com.devchun.spittr.config.WebConfig</param-value>
 			<!-- <param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value> -->
 		</init-param>
 		<load-on-startup>1</load-on-startup>

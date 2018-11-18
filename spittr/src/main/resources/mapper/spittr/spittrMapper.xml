@@ -8,6 +8,7 @@
 		<result column="longitude" property="longitude" />
 		<result column="latitude" property="latitude" />
 	</resultMap>
+	
 	<resultMap id="spitter" type="com.devchun.spittr.Spitter">
 		<id column="id" property="id" />
 		<result column="username" property="username" />
@@ -18,7 +19,7 @@
 	</resultMap>
 	
 	<select id="selectSpittles" resultMap="spittle">
-		<!-- spittrMapper.xml - selectSpittles -->
+		/* spittrMapper.xml - selectSpittles */
 		SELECT ID
 			  ,MESSAGE
 			  ,CREATED
@@ -28,16 +29,17 @@
 	     ORDER BY ID DESC
 	</select>
 	
-	<insert id="insertsSpitter" parameterMap="spitter">
-		<!-- spittrMapper.xml - insertSpitter -->
-		INSERT INFO SPITTER(USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, EMAIL)
+	<insert id="insertSpitter" parameterType="Spitter">
+		/* spittrMapper.xml - insertSpitter */
+		INSERT INTO SPITTER(USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, EMAIL)
 		VALUES (#{username}, #{password}, #{firstName}, #{lastName}, #{email})
 	</insert>
 	
 	<select id="selectSpitter" parameterType="String" resultMap="spitter">
-		<!-- spittrMapper.xml - selectSpitter -->
+		/* spittrMapper.xml - selectSpitter */
 		SELECT ID
 			  ,USERNAME
+			  ,PASSWORD
 			  ,FIRST_NAME
 			  ,LAST_NAME
 			  ,EMAIL
@@ -45,4 +47,9 @@
 		 WHERE USERNAME = #{username}
 	</select>
 	
+	<insert id="insertSpittle" parameterType="Spittle">
+	 /* spittrMapper.xml - insertSpittle */
+	 INSERT INTO SPITTLE(MESSAGE, CREATED, LATITUDE, LONGITUDE)
+	 VALUES(#{message}, now(), #{latitude}, #{longitude})
+	</insert>
 </mapper>

@@ -2,22 +2,23 @@ package com.devchun.spittr.data;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.devchun.spittr.Spittle;
-import com.devchun.spittr.web.DuplicatedSpittleException;
-import com.devchun.spittr.web.SpittleNotFoundException;
+import com.devchun.spittr.web.exception.DuplicatedSpittleException;
+import com.devchun.spittr.web.exception.SpittleNotFoundException;
 
 @Repository
 public class SpittleRepositoryImpl implements SpittleRepository {
-	
-	@Autowired
+
+  @Autowired
 	private SqlSessionTemplate sqlSession;
 	
 	private final Spittle[] initSpittles = {
@@ -30,8 +31,6 @@ public class SpittleRepositoryImpl implements SpittleRepository {
 	@Override
 	public List<Spittle> findSpittles(long max, int count) {
 		return sqlSession.selectList("spittr.selectSpittles");
-		
-		//return spittles;
 	}
 
 	@Override
@@ -50,15 +49,6 @@ public class SpittleRepositoryImpl implements SpittleRepository {
 
 	@Override
 	public void save(Spittle spittle) {
-		if (spittle.getMessage().equals("chundol")) {
-			throw new DuplicatedSpittleException();
-		} 
-		
-		for (Spittle s : spittles) {
-			if (s.equals(spittle)) {
-				throw new DuplicatedSpittleException();
-			}
-		}
-		spittles.add(spittle);
+		sqlSession.insert("spittr.insertSpittle", spittle);
 	}
 }

@@ -2,7 +2,7 @@
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <h1>Register</h1>
 
-<sf:form method="post" commandName="spitter" enctype="multipart/form-data">
+<sf:form method="post" commandName="spitter" enctype="multipart/form-data" action="/spitters/register?${_csrf.parameterName}=${_csrf.token}">
 	<sf:errors path="*" element="div" cssClass="errors" />
 	
 	<sf:label path="firstName" cssErrorClass="error">First Name</sf:label>:

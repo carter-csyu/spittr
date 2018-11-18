@@ -2,6 +2,8 @@ package com.devchun.spittr.config;
 
 import java.io.IOException;
 
+import javax.sql.DataSource;
+
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -16,6 +18,10 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+
+import net.sf.log4jdbc.Log4jdbcProxyDataSource;
+import net.sf.log4jdbc.tools.Log4JdbcCustomFormatter;
+import net.sf.log4jdbc.tools.LoggingType;
 
 
 @Configuration
@@ -42,10 +48,21 @@ public class DataConfig {
 		return dataSource;
 	}
 	
+	public DataSource dataSourceSpied() {
+	  Log4jdbcProxyDataSource dataSourceSpied = new Log4jdbcProxyDataSource(dataSource());
+	  Log4JdbcCustomFormatter formatter = new Log4JdbcCustomFormatter();
+	  formatter.setLoggingType(LoggingType.MULTI_LINE);
+	  formatter.setSqlPrefix("");
+	  
+	  dataSourceSpied.setLogFormatter(formatter);
+	  
+	  return dataSourceSpied;
+	}
+	
 	@Bean
 	public SqlSessionFactoryBean sqlSessionFactoryBean() throws IOException{
 		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
-		sessionFactory.setDataSource(dataSource());
+		sessionFactory.setDataSource(dataSourceSpied());
 		sessionFactory.setMapperLocations(
 			new PathMatchingResourcePatternResolver().getResources("classpath:/mapper/**/*Mapper.xml"));
 		sessionFactory.setConfigLocation(
@@ -63,7 +80,7 @@ public class DataConfig {
 	@Bean
 	public DataSourceTransactionManager dataSourceTransactionManager() {
 		DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager();
-		dataSourceTransactionManager.setDataSource(dataSource());
+		dataSourceTransactionManager.setDataSource(dataSourceSpied());
 		
 		return dataSourceTransactionManager;
 	}

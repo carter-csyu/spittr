@@ -1,13 +1,17 @@
 package com.devchun.spittr.web;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 public class HomeContollerTest {
-
+  
+  private static Logger logger = LoggerFactory.getLogger(HomeContollerTest.class);
+  
 	@Test
 	public void testHomePage() throws Exception {
 		HomeController controller = new HomeController();
@@ -16,3 +20,5 @@ public class HomeContollerTest {
 		mockMvc.perform(MockMvcRequestBuilders.get("/")).andExpect(MockMvcResultMatchers.view().name("home"));
 	}
 }
+
+

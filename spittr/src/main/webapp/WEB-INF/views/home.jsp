@@ -5,10 +5,7 @@
 	<s:param name="max" value="60" />
 	<s:param name="count" value="20" />
 </s:url>
-<s:url value="spitter/register" var="register" htmlEscape="true" />
-<s:url value="spitter/{username}" var="chundol42" htmlEscape="true">
-	<s:param name="username" value="chundol42" />
-</s:url>
+<s:url value="spitters/register" var="register" htmlEscape="true" />
 
 <h1><s:message code="spittr.welcome" /></h1>
 <a href="${spittlesUrl}">Spittles</a> |

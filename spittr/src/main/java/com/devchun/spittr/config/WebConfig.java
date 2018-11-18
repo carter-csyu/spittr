@@ -1,4 +1,4 @@
-package com.devchun.spittr.web;
+package com.devchun.spittr.config;
 
 import java.io.IOException;
 
@@ -13,6 +13,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
@@ -29,7 +30,7 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 		resolver.setPrefix("/WEB-INF/views/");
 		resolver.setSuffix(".jsp");
 		resolver.setExposeContextBeansAsAttributes(true);
-		resolver.setOrder(1);
+		resolver.setOrder(Integer.MAX_VALUE);
 		
 		return resolver;
 	}
@@ -37,10 +38,24 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 	@Bean
 	public ViewResolver tilesViewResolver() {
 		TilesViewResolver resolver = new TilesViewResolver();
-		resolver.setOrder(0);
+		resolver.setOrder(2);
 		
 		return resolver;
 	}
+	
+	@Bean
+  public TilesConfigurer tilesConfigurer() {
+    TilesConfigurer tiles = new TilesConfigurer();
+    String[] definitions = {
+      "/WEB-INF/layout/tiles.xml",
+      "/WEB-INF/**/tiles.xml" 
+    };
+    
+    tiles.setDefinitions(definitions);
+    tiles.setCheckRefresh(true);
+    
+    return tiles;
+  }
 	
 	@Bean
 	public MessageSource messageSource() {
@@ -53,19 +68,33 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 		return messageSource;
 	}
 	
-	@Bean
-	public TilesConfigurer tilesConfigurer() {
-		TilesConfigurer tiles = new TilesConfigurer();
-		String[] definitions = {
-			"/WEB-INF/layout/tiles.xml",
-			"/WEB-INF/**/tiles.xml"	
-		};
-		
-		tiles.setDefinitions(definitions);
-		tiles.setCheckRefresh(true);
-		
-		return tiles;
-	}
+//	@Bean
+//	public ViewResolver thymeleafViewResolver() {
+//	  ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
+//	  viewResolver.setTemplateEngine(templateEngine());
+//	  viewResolver.setOrder(1);
+//	  
+//	  return viewResolver;
+//	}
+//	
+//	@Bean
+//	public SpringResourceTemplateResolver templateResolver() {
+//	  SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
+//	  templateResolver.setPrefix("/WEB-INF/templates/");
+//	  templateResolver.setSuffix(".html");
+//	  templateResolver.setTemplateMode(TemplateMode.HTML);
+//	  templateResolver.setCacheable(true);
+//	  
+//	  return templateResolver;
+//	}
+//	
+//	@Bean
+//	public SpringTemplateEngine templateEngine() {
+//	  SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+//	  templateEngine.setTemplateResolver(templateResolver());
+//	  
+//	  return templateEngine;
+//	}
 	
 	@Bean
 	public MultipartResolver multipartResolver() throws IOException {
@@ -81,5 +110,10 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
+	}
+	
+	@Override
+	public void addViewControllers(ViewControllerRegistry registry) {
+	  registry.addViewController("/login").setViewName("login");
 	}
 }

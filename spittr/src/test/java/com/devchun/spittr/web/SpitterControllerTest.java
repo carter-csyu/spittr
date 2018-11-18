@@ -8,6 +8,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -16,6 +19,8 @@ import com.devchun.spittr.data.SpitterRepository;
 
 public class SpitterControllerTest {
 
+  private static Logger logger = LoggerFactory.getLogger(SpitterControllerTest.class);
+  
 	@Test
 	public void shouldShowRegistration() throws Exception {
 		SpitterController controller = new SpitterController();
@@ -42,5 +47,12 @@ public class SpitterControllerTest {
 				.param("password", "24hours")
 				.param("email", "test@email.com"))
 			.andExpect(redirectedUrl("/spitter/jbauer"));
+	}
+	
+	@Test
+	public void standardPasswordEncoder() {
+	  StandardPasswordEncoder encoder = new StandardPasswordEncoder("chundol42");
+	  
+	  logger.info(encoder.encode("1q2w3e4r!"));
 	}
 }

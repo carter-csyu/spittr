@@ -12,7 +12,7 @@ public class Spittle {
 	private final Date time;
 	private Double longitude;
 	private Double latitude;
-	
+
 	public Spittle(String message, Date time) {
 		this(null, message, time, null, null);
 	}
