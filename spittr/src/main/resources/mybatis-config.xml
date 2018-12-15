@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?> <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
   <typeAliases>
-    <typeAlias type="com.devchun.spittr.Spitter" alias="Spitter" />
-    <typeAlias type="com.devchun.spittr.Spittle" alias="Spittle" />
+    <typeAlias type="com.devchun.spittr.domain.Spitter" alias="Spitter" />
+    <typeAlias type="com.devchun.spittr.domain.Spittle" alias="Spittle" />
   </typeAliases>
 </configuration>
 

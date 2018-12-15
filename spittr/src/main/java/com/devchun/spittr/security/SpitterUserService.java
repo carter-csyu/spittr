@@ -10,8 +10,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.devchun.spittr.Spitter;
 import com.devchun.spittr.data.SpitterRepository;
+import com.devchun.spittr.domain.Spitter;
 
 public class SpitterUserService implements UserDetailsService {
 
@@ -20,8 +20,8 @@ public class SpitterUserService implements UserDetailsService {
   public SpitterUserService(SpitterRepository spitterRepository) {
     this.spitterRepository = spitterRepository;
   }
+
   
-  @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     Spitter spitter = spitterRepository.findByUsername(username);
     
@@ -38,4 +38,5 @@ public class SpitterUserService implements UserDetailsService {
     
     throw new UsernameNotFoundException("User '" + username + "' not found.");
   }
+  
 }

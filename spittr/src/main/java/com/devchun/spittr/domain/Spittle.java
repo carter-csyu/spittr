@@ -1,4 +1,4 @@
-package com.devchun.spittr;
+package com.devchun.spittr.domain;
 
 import java.sql.Timestamp;
 import java.util.Date;

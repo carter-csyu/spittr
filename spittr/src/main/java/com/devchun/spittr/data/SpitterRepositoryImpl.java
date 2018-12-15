@@ -1,23 +1,26 @@
 package com.devchun.spittr.data;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
-import com.devchun.spittr.Spitter;
+import com.devchun.spittr.domain.Spitter;
 import com.devchun.spittr.web.exception.DuplicatedSpitterException;
 
 @Repository
+@Qualifier("mybatisSpitterRepository")
 public class SpitterRepositoryImpl implements SpitterRepository {
 	private static final Logger logger = LoggerFactory.getLogger(SpitterRepositoryImpl.class);
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	@Override
 	public Spitter save(Spitter spitter) {
 		Spitter newSpitter;
 		newSpitter = sqlSession.selectOne("spittr.selectSpitter", spitter.getUsername());
@@ -33,8 +36,12 @@ public class SpitterRepositoryImpl implements SpitterRepository {
 		return spitter;
 	}
 
-	@Override
 	public Spitter findByUsername(String username) {
 		return sqlSession.selectOne("spittr.selectSpitter", username);
 	  	}
+
+  @Override
+  public List<Spitter> findAll() {
+    return sqlSession.selectList("spittr.selectSpitters");
+  }
 }

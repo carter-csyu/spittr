@@ -9,7 +9,9 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
@@ -20,9 +22,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.devchun.spittr.Spitter;
 import com.devchun.spittr.SpitterForm;
 import com.devchun.spittr.data.SpitterRepository;
+import com.devchun.spittr.domain.Spitter;
 
 @Controller
 @RequestMapping("/spitters")
@@ -34,8 +36,17 @@ public class SpitterController {
 	public SpitterController() {}
 	
 	@Autowired
-	public SpitterController(SpitterRepository spitterRepository) {
+	public SpitterController(@Qualifier("hibernateSpitterRepository") SpitterRepository spitterRepository) {
 		this.spitterRepository = spitterRepository;
+	}
+	
+	@RequestMapping(value="/", method=RequestMethod.GET)
+	public void printAllSpitters() {
+	  List<Spitter> spitterList = spitterRepository.findAll();
+	  
+	  for (Spitter s :  spitterList) {
+	    logger.info(s.toString());
+	  }
 	}
 
 	@RequestMapping(value="/register", method=RequestMethod.GET)

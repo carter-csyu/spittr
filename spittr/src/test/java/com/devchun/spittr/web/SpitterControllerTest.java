@@ -14,8 +14,8 @@ import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.devchun.spittr.Spitter;
 import com.devchun.spittr.data.SpitterRepository;
+import com.devchun.spittr.domain.Spitter;
 
 public class SpitterControllerTest {
 
@@ -47,12 +47,5 @@ public class SpitterControllerTest {
 				.param("password", "24hours")
 				.param("email", "test@email.com"))
 			.andExpect(redirectedUrl("/spitter/jbauer"));
-	}
-	
-	@Test
-	public void standardPasswordEncoder() {
-	  StandardPasswordEncoder encoder = new StandardPasswordEncoder("chundol42");
-	  
-	  logger.info(encoder.encode("1q2w3e4r!"));
 	}
 }

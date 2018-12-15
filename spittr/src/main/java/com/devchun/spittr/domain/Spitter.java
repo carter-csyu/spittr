@@ -1,5 +1,10 @@
-package com.devchun.spittr;
+package com.devchun.spittr.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -7,28 +12,36 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.hibernate.validator.constraints.Email;
 
-
+@Entity
 public class Spitter {
+  
+  @Id
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
 	@NotNull
 	@Size(min=5, max=16, message="{username.size}")
+	@Column(name="username")
 	private String username;
 	
 	@NotNull
 	@Size(min=5, max=25, message="{password.size}")
+	@Column(name="password")
 	private String password;
 	
 	@NotNull
 	@Size(min=2, max=30, message="{firstName.size}")
+	@Column(name="first_name")
 	private String firstName;
 	
 	@NotNull
 	@Size(min=2, max=30, message="{lastName.size}")
+	@Column(name="last_name")
 	private String lastName;
 	
 	@NotNull
 	@Email(message="{email.valid}")
+	@Column(name="email")
 	private String email;
 	
 	public Spitter() {}

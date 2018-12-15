@@ -12,8 +12,7 @@
 
 	<!-- Application Loggers -->
 	<logger name="com.devchun.spittr">
-		<level value="debug" />
-		<appender-ref ref="console" />
+		<level value="info" />
 	</logger>
 
 	<logger name="jdbc" additivity="false">
@@ -21,7 +20,6 @@
 	</logger>
 	<logger name="jdbc.sqlonly" additivity="false">
 		<level value="info" />
-		<appender-ref ref="console" />
 	</logger>
 
 	<!-- 3rdparty Loggers -->

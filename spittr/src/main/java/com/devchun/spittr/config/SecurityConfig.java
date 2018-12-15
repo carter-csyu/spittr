@@ -1,8 +1,7 @@
 package com.devchun.spittr.config;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -10,9 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
-import org.springframework.security.web.util.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.RegexRequestMatcher;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.devchun.spittr.data.SpitterRepository;
 import com.devchun.spittr.security.SpitterUserService;
@@ -22,6 +19,7 @@ import com.devchun.spittr.security.SpitterUserService;
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
   
   @Autowired
+  @Qualifier("mybatisSpitterRepository")
   SpitterRepository spitterRepository;
   
   @Override

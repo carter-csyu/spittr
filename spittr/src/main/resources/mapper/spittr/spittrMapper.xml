@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="spittr">
-	<resultMap id="spittle" type="com.devchun.spittr.Spittle">
+	<resultMap id="spittle" type="com.devchun.spittr.domain.Spittle">
 		<id column="id" property="id" />
 		<result column="message" property="message" />
 		<result column="created" property="time" />
@@ -9,7 +9,7 @@
 		<result column="latitude" property="latitude" />
 	</resultMap>
 	
-	<resultMap id="spitter" type="com.devchun.spittr.Spitter">
+	<resultMap id="spitter" type="com.devchun.spittr.domain.Spitter">
 		<id column="id" property="id" />
 		<result column="username" property="username" />
 		<result column="password" property="password" />
@@ -34,6 +34,17 @@
 		INSERT INTO SPITTER(USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, EMAIL)
 		VALUES (#{username}, #{password}, #{firstName}, #{lastName}, #{email})
 	</insert>
+	
+	<select id="selectSpitters" resultMap="spitter">
+	  /* spittrMapper.xml - selectSpitters */
+	  SELECT ID
+	       ,USERNAME
+	       ,PASSWORD
+	       ,FIRST_NAME
+	       ,LAST_NAME
+	       ,EMAIL
+	    FROM SPITTER
+	</select>
 	
 	<select id="selectSpitter" parameterType="String" resultMap="spitter">
 		/* spittrMapper.xml - selectSpitter */

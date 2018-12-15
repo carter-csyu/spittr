@@ -18,7 +18,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.servlet.view.InternalResourceView;
 
-import com.devchun.spittr.Spittle;
+import com.devchun.spittr.domain.Spittle;
 import com.devchun.spittr.web.SpittleController;
 
 public class SpittleRepositoryTest {

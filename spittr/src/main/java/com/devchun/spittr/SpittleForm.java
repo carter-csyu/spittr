@@ -5,6 +5,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.devchun.spittr.domain.Spittle;
+
 public class SpittleForm {
   @NotNull
   @Size(min = 1, max = 140)

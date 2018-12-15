@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.devchun.spittr.Spittle;
 import com.devchun.spittr.SpittleForm;
 import com.devchun.spittr.data.SpittleRepository;
+import com.devchun.spittr.domain.Spittle;
 import com.devchun.spittr.web.exception.SpittleNotFoundException;
 
 @Controller

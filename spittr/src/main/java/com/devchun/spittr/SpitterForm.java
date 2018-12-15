@@ -6,6 +6,8 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.devchun.spittr.domain.Spitter;
+
 public class SpitterForm {
 
   @NotNull

@@ -12,8 +12,8 @@ import org.junit.Test;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.devchun.spittr.Spittle;
 import com.devchun.spittr.data.SpittleRepository;
+import com.devchun.spittr.domain.Spittle;
 
 public class SpittleControllerTest {
 
