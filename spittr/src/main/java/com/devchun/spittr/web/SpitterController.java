@@ -36,7 +36,7 @@ public class SpitterController {
 	public SpitterController() {}
 	
 	@Autowired
-	public SpitterController(@Qualifier("hibernateSpitterRepository") SpitterRepository spitterRepository) {
+	public SpitterController(@Qualifier("jpaSpitterRepository") SpitterRepository spitterRepository) {
 		this.spitterRepository = spitterRepository;
 	}
 	

@@ -56,9 +56,4 @@ public class HibernateConfig {
 
     return txManager;
   }
-
-  @Bean
-  public BeanPostProcessor exceptionTranslation() {
-    return new PersistenceExceptionTranslationPostProcessor();
-  }
 }
