@@ -1,45 +1,35 @@
-package com.devchun.spittr.data;
+package com.devchun.spittr.data.mybatis;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.devchun.spittr.data.SpittleRepository;
 import com.devchun.spittr.domain.Spittle;
 import com.devchun.spittr.web.exception.SpittleNotFoundException;
 
 @Repository
+@Transactional(transactionManager="mybatisTxManager")
 public class SpittleRepositoryImpl implements SpittleRepository {
 
   @Autowired
 	private SqlSessionTemplate sqlSession;
-	
-	private final Spittle[] initSpittles = {
-		new Spittle((long)1, "Spittle1", new Date(), null, null),
-		new Spittle((long)2, "Spittle2", new Date(), null, null),
-		new Spittle((long)3, "Spittle3", new Date(), null, null)
-	};
-	private List<Spittle> spittles = new ArrayList<Spittle>(Arrays.asList(initSpittles));
 	
 	public List<Spittle> findSpittles(long max, int count) {
 		return sqlSession.selectList("spittr.selectSpittles");
 	}
 
 	public Spittle findOne(long spittleId) {
-		Spittle result = null;
-		for (Spittle s : spittles) {
-			if (s.getId() == spittleId) {
-				result = s;
-				break;
-			}
-		}
-		if (result == null) throw new SpittleNotFoundException();
-		
-		return result;
+	  Spittle spittle = sqlSession.selectOne("spittr.selectSpittle", spittleId);
+	  
+	  if (spittle == null) {
+	    throw new SpittleNotFoundException();
+	  }
+	  
+	  return spittle;
 	}
 
 	public void save(Spittle spittle) {

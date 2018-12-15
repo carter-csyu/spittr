@@ -1,4 +1,4 @@
-package com.devchun.spittr.data;
+package com.devchun.spittr.data.mybatis;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
+import com.devchun.spittr.data.SpitterRepository;
 import com.devchun.spittr.domain.Spitter;
 import com.devchun.spittr.web.exception.DuplicatedSpitterException;
 

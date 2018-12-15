@@ -29,6 +29,17 @@
 	     ORDER BY ID DESC
 	</select>
 	
+	<select id="selectSpittle" parameterType="Long" resultType="spittle">
+	  /* spittrMapper.xml - selectSpittle */
+    SELECT ID
+        ,MESSAGE
+        ,CREATED
+        ,LONGITUDE
+        ,LATITUDE
+        FROM SPITTLE
+     WHERE ID = #{spittleId}
+	</select>
+	
 	<insert id="insertSpitter" parameterType="Spitter">
 		/* spittrMapper.xml - insertSpitter */
 		INSERT INTO SPITTER(USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, EMAIL)

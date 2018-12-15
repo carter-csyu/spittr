@@ -40,13 +40,11 @@ public class SpitterController {
 		this.spitterRepository = spitterRepository;
 	}
 	
-	@RequestMapping(value="/", method=RequestMethod.GET)
-	public void printAllSpitters() {
+	@RequestMapping(method=RequestMethod.GET)
+	public List<Spitter> showSpitters() {
 	  List<Spitter> spitterList = spitterRepository.findAll();
 	  
-	  for (Spitter s :  spitterList) {
-	    logger.info(s.toString());
-	  }
+	  return spitterList;
 	}
 
 	@RequestMapping(value="/register", method=RequestMethod.GET)
@@ -82,12 +80,6 @@ public class SpitterController {
     
     return "redirect:/spitters/{username}";
   }
-
-	@RequestMapping(value="/me", method=RequestMethod.GET)
-	public String me() {
-	  logger.info("/spitters/me called");
-	   return "home";
-	} 
 	
 	@RequestMapping(value="/{username}", method=RequestMethod.GET)
 	public String showSpitterProfile(

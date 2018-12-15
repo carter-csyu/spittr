@@ -6,8 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.security.web.util.matcher.RegexRequestMatcher;
 
@@ -15,7 +15,7 @@ import com.devchun.spittr.data.SpitterRepository;
 import com.devchun.spittr.security.SpitterUserService;
 
 @Configuration
-@EnableWebMvcSecurity
+@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
   
   @Autowired
@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     .rememberMe().tokenValiditySeconds(2419200).key("spittrKey").and()
     .logout().logoutRequestMatcher(new RegexRequestMatcher("/logout", null)).logoutSuccessUrl("/").and()
     .authorizeRequests()
-    .antMatchers("/spitters/me").access("hasRole('ROLE_SPITTER')")
+    .antMatchers("/spitters").access("hasRole('ROLE_SPITTER')")
     .antMatchers(HttpMethod.POST, "/spittles").access("hasRole('ROLE_SPITTER')")
     .anyRequest().permitAll();
   }

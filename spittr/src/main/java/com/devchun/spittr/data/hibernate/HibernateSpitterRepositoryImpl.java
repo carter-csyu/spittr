@@ -1,4 +1,4 @@
-package com.devchun.spittr.data;
+package com.devchun.spittr.data.hibernate;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.devchun.spittr.data.SpitterRepository;
 import com.devchun.spittr.domain.Spitter;
 import com.devchun.spittr.web.exception.DuplicatedSpitterException;
 

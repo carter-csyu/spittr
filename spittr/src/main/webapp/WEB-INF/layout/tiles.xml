@@ -22,6 +22,10 @@
 		<put-attribute name="body" value="/WEB-INF/views/profile.jsp" />
 	</definition>
 	
+	<definition name="spitters" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views/spitters.jsp" />
+	</definition>
+	
 	<definition name="registerForm" extends="base">
 		<put-attribute name="body" value="/WEB-INF/views/registerForm.jsp" />
 	</definition>
