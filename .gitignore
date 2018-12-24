@@ -6,3 +6,11 @@ spittr/.settings
 spittr/.project
 spittr/.classpath
 spittr/.springBeans
+
+spittr/spittr.iml
+spittr/**/*.iml
+.idea/
+
+spittr/src/main/webapp/META-INF
+spittr/src/main/webapp/WEB-INF/classes
+spittr/src/main/webapp/WEB-INF/lib
